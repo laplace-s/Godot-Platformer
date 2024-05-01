@@ -84,6 +84,7 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_2s8bh")
 animation = &"moving"
 autoplay = "default"
+flip_h = true
 
 [node name="KillZone" parent="." instance=ExtResource("2_hhr2n")]
 

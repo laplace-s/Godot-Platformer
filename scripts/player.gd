@@ -1,12 +1,16 @@
 extends CharacterBody2D
 
 
-const SPEED = 200.0
+var SPEED = 200.0
 const JUMP_VELOCITY = -350.0
 var dead = false
+var crouching = false
 
 @onready var timer = $dedtime
 @onready var anim = $anim
+@onready var standingcol = $standingcol
+@onready var crouchingcol = $crouchingcol
+@onready var uncrouchcheck = $uncrouchcheck
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -21,7 +25,17 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		uncrouch()
 
+	if Input.is_action_just_pressed("crouch") and is_on_floor():
+		standingcol.disabled = true
+		crouchingcol.disabled = false
+		crouching = true
+		SPEED = 50
+		
+	if Input.is_action_just_released("crouch") and is_on_floor():
+		uncrouch()
+		
 	var direction = Input.get_axis("mleft", "mright")
 	if direction>0:
 		anim.flip_h = false
@@ -29,12 +43,22 @@ func _physics_process(delta):
 		anim.flip_h = true
 	
 	if is_on_floor():
-		if direction==0:
-			anim.play("Idle")
+		if crouching:
+			if direction==0:
+				anim.play("crouch_idle")
+			else:
+				anim.play("crouch_move")
 		else:
-			anim.play("move")
+			if direction==0:
+				anim.play("Idle")
+			else:
+				anim.play("move")
 	else:
-		anim.play("jump")
+		if velocity.y>0:
+			anim.play("fall")
+		else:
+			anim.play("jump")
+		
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -49,7 +73,13 @@ func die():
 	anim.play("death")
 	timer.start()
 	
-
+func uncrouch():
+	if uncrouchcheck.is_colliding():
+		return
+	standingcol.disabled = false
+	crouchingcol.disabled = true
+	crouching = false
+	SPEED = 200
 
 func _on_dedtime_timeout():
 	Engine.time_scale = 1
