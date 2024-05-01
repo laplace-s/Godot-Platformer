@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctggbd8dxpfuu"]
+
+[ext_resource type="PackedScene" uid="uid://bje5usf1yaiun" path="res://scenes/player.tscn" id="1_joes2"]
+[ext_resource type="PackedScene" uid="uid://ceenqsnmiijre" path="res://scenes/map.tscn" id="2_wj48i"]
+[ext_resource type="PackedScene" uid="uid://2pqvem1xddh5" path="res://scenes/power_up.tscn" id="3_re5dk"]
+[ext_resource type="PackedScene" uid="uid://db8e35rj2l3nc" path="res://scenes/kill_zone.tscn" id="4_ux6qq"]
+[ext_resource type="PackedScene" uid="uid://csadwgsaxupwh" path="res://scenes/slime.tscn" id="5_orms2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2w8d5"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_joes2")]
+position = Vector2(4, -1)
+
+[node name="TileMap" parent="." instance=ExtResource("2_wj48i")]
+
+[node name="PowerUp" parent="." instance=ExtResource("3_re5dk")]
+position = Vector2(60, -16)
+
+[node name="KillZone" parent="." instance=ExtResource("4_ux6qq")]
+position = Vector2(32, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+position = Vector2(58, -52)
+shape = SubResource("WorldBoundaryShape2D_2w8d5")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Slime" parent="Enemies" instance=ExtResource("5_orms2")]
+position = Vector2(248, 3)
+
+[node name="Slime2" parent="Enemies" instance=ExtResource("5_orms2")]
+position = Vector2(-3, -302)
+
+[node name="Slime3" parent="Enemies" instance=ExtResource("5_orms2")]
+position = Vector2(-75, -303)
+
+[node name="Slime4" parent="Enemies" instance=ExtResource("5_orms2")]
+position = Vector2(-44, -351)
+
+[node name="Slime5" parent="Enemies" instance=ExtResource("5_orms2")]
+position = Vector2(-82, -351)
+
+[node name="Slime6" parent="Enemies" instance=ExtResource("5_orms2")]
+position = Vector2(-8, -351)
