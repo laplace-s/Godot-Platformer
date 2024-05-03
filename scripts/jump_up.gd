@@ -4,5 +4,5 @@ extends Area2D
 
 
 func _on_body_entered(body):
-	body.die()
+	body.walljump = true
 	queue_free()

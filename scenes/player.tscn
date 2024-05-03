@@ -295,18 +295,6 @@ region = Rect2(960, 0, 120, 80)
 atlas = ExtResource("4_sqi62")
 region = Rect2(1080, 0, 120, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_43qj2"]
-atlas = ExtResource("14_m6fd0")
-region = Rect2(0, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjgew"]
-atlas = ExtResource("14_m6fd0")
-region = Rect2(120, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ujw5v"]
-atlas = ExtResource("14_m6fd0")
-region = Rect2(240, 0, 120, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_pdovg"]
 atlas = ExtResource("15_w0h1o")
 region = Rect2(0, 0, 120, 80)
@@ -362,6 +350,18 @@ region = Rect2(0, 0, 120, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_eo7ow"]
 atlas = ExtResource("16_0iiwx")
 region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43qj2"]
+atlas = ExtResource("14_m6fd0")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjgew"]
+atlas = ExtResource("14_m6fd0")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujw5v"]
+atlas = ExtResource("14_m6fd0")
+region = Rect2(240, 0, 120, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7sqfr"]
 animations = [{
@@ -631,20 +631,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_43qj2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cjgew")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ujw5v")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_pdovg")
 }, {
 "duration": 1.0,
@@ -694,6 +680,20 @@ animations = [{
 "loop": true,
 "name": &"slide",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43qj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjgew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujw5v")
+}],
+"loop": true,
+"name": &"wallslide",
+"speed": 8.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -714,9 +714,9 @@ disabled = true
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_7sqfr")
-animation = &"new_animation"
+animation = &"wallslide"
 autoplay = "Idle"
-frame_progress = 0.97438
+frame_progress = 0.877974
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -20)
@@ -729,5 +729,13 @@ one_shot = true
 
 [node name="uncrouchcheck" type="RayCast2D" parent="."]
 target_position = Vector2(0, -34)
+
+[node name="leftwall" type="RayCast2D" parent="."]
+position = Vector2(0, -19)
+target_position = Vector2(-15, 0)
+
+[node name="rightwall" type="RayCast2D" parent="."]
+position = Vector2(0, -19)
+target_position = Vector2(6, 0)
 
 [connection signal="timeout" from="dedtime" to="." method="_on_dedtime_timeout"]

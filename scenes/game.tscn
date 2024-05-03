@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctggbd8dxpfuu"]
+[gd_scene load_steps=9 format=3 uid="uid://ctggbd8dxpfuu"]
 
 [ext_resource type="PackedScene" uid="uid://bje5usf1yaiun" path="res://scenes/player.tscn" id="1_joes2"]
 [ext_resource type="PackedScene" uid="uid://ceenqsnmiijre" path="res://scenes/map.tscn" id="2_wj48i"]
 [ext_resource type="PackedScene" uid="uid://2pqvem1xddh5" path="res://scenes/power_up.tscn" id="3_re5dk"]
 [ext_resource type="PackedScene" uid="uid://db8e35rj2l3nc" path="res://scenes/kill_zone.tscn" id="4_ux6qq"]
 [ext_resource type="PackedScene" uid="uid://csadwgsaxupwh" path="res://scenes/slime.tscn" id="5_orms2"]
+[ext_resource type="PackedScene" uid="uid://bh8hw06sthqbw" path="res://scenes/skeleton.tscn" id="6_t2jpy"]
+[ext_resource type="PackedScene" uid="uid://jjucupkoytn1" path="res://scenes/jump_up.tscn" id="7_xy258"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_akkp4"]
 
@@ -43,3 +45,9 @@ position = Vector2(361, 1251)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_akkp4")
+
+[node name="skeleton" parent="." instance=ExtResource("6_t2jpy")]
+position = Vector2(764, 870)
+
+[node name="PowerUp2" parent="." instance=ExtResource("7_xy258")]
+position = Vector2(850, 989)

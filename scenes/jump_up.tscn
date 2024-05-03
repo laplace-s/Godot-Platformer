@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://jjucupkoytn1"]
+
+[ext_resource type="Script" path="res://scripts/jump_up.gd" id="1_ewnqk"]
+[ext_resource type="Texture2D" uid="uid://braluel2ybhcx" path="res://assets/icons.png" id="2_3y6w4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w88bn"]
+size = Vector2(23, 21)
+
+[node name="PowerUp" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_ewnqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3y6w4")
+region_enabled = true
+region_rect = Rect2(64, 256, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_w88bn")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -149.0
+offset_top = -38.0
+offset_right = 165.0
+offset_bottom = -15.0
+text = "You can now jump while sliding on walls!"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
