@@ -1,8 +1,28 @@
-[gd_scene load_steps=14 format=3 uid="uid://csadwgsaxupwh"]
+[gd_scene load_steps=19 format=3 uid="uid://csadwgsaxupwh"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_u2fqc"]
 [ext_resource type="Texture2D" uid="uid://cqo4ga1fawu30" path="res://assets/slime-Sheet.png" id="1_wluth"]
 [ext_resource type="PackedScene" uid="uid://db8e35rj2l3nc" path="res://scenes/kill_zone.tscn" id="2_hhr2n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av1wc"]
+atlas = ExtResource("1_wluth")
+region = Rect2(0, 50, 32, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0rql"]
+atlas = ExtResource("1_wluth")
+region = Rect2(32, 50, 32, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f6sn"]
+atlas = ExtResource("1_wluth")
+region = Rect2(64, 50, 32, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88i2w"]
+atlas = ExtResource("1_wluth")
+region = Rect2(96, 50, 32, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ytd3"]
+atlas = ExtResource("1_wluth")
+region = Rect2(128, 50, 32, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h5ral"]
 atlas = ExtResource("1_wluth")
@@ -38,6 +58,26 @@ region = Rect2(224, 0, 32, 25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2s8bh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av1wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0rql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f6sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88i2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ytd3")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h5ral")
@@ -82,7 +122,7 @@ script = ExtResource("1_u2fqc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_2s8bh")
-animation = &"moving"
+animation = &"death"
 autoplay = "default"
 flip_h = true
 

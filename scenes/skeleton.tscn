@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bh8hw06sthqbw"]
+[gd_scene load_steps=80 format=3 uid="uid://bh8hw06sthqbw"]
 
 [ext_resource type="Texture2D" uid="uid://clbeyg1c2gvlj" path="res://assets/skeleton/Skeleton Attack.png" id="1_jbpd6"]
 [ext_resource type="Texture2D" uid="uid://c3ht48vn8cy5h" path="res://assets/skeleton/Skeleton Dead.png" id="2_hlo8i"]
@@ -523,6 +523,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4ll5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbb42"]
+size = Vector2(17, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1n7j"]
+
 [node name="skeleton" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -530,3 +537,21 @@ sprite_frames = SubResource("SpriteFrames_kbblu")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.262639
+
+[node name="DetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+position = Vector2(15, 3)
+shape = SubResource("RectangleShape2D_j4ll5")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-3.5, 4)
+shape = SubResource("RectangleShape2D_vbb42")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(-47, 38)
+shape = SubResource("RectangleShape2D_y1n7j")

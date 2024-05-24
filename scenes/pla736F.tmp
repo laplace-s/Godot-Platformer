@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://bje5usf1yaiun"]
+[gd_scene load_steps=106 format=3 uid="uid://bje5usf1yaiun"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_axeb6"]
 [ext_resource type="Texture2D" uid="uid://6w8rsytiq14a" path="res://assets/KnightA/_Idle.png" id="2_182nm"]
@@ -14,18 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://b2eiyqsjfc8o8" path="res://assets/KnightA/_Fall.png" id="6_xocc6"]
 [ext_resource type="Texture2D" uid="uid://dq2iempf53uj5" path="res://assets/KnightA/_Dash.png" id="9_3gkg6"]
 [ext_resource type="Texture2D" uid="uid://i1fk1w1n30jt" path="res://assets/KnightA/_WallSlide.png" id="14_m6fd0"]
-[ext_resource type="Texture2D" uid="uid://ccdewxr7x0ar" path="res://assets/KnightA/_SlideAll.png" id="15_afg8w"]
 [ext_resource type="Texture2D" uid="uid://b3ew1juxh6t7y" path="res://assets/KnightA/_Roll.png" id="15_w0h1o"]
-[ext_resource type="Script" path="res://scripts/Attacks.gd" id="17_d1gcn"]
+[ext_resource type="Texture2D" uid="uid://d3cf625tpedlf" path="res://assets/KnightA/_Slide.png" id="16_0iiwx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xjrk"]
 size = Vector2(14, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1n5yu"]
 size = Vector2(14, 21.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7pvr"]
-size = Vector2(14, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0mhe7"]
 atlas = ExtResource("2_182nm")
@@ -347,21 +343,13 @@ region = Rect2(1200, 0, 120, 80)
 atlas = ExtResource("15_w0h1o")
 region = Rect2(1320, 0, 120, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2twgn"]
-atlas = ExtResource("15_afg8w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8qmy"]
+atlas = ExtResource("16_0iiwx")
 region = Rect2(0, 0, 120, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r34sr"]
-atlas = ExtResource("15_afg8w")
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo7ow"]
+atlas = ExtResource("16_0iiwx")
 region = Rect2(120, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c0si7"]
-atlas = ExtResource("15_afg8w")
-region = Rect2(240, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aoior"]
-atlas = ExtResource("15_afg8w")
-region = Rect2(360, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43qj2"]
 atlas = ExtResource("14_m6fd0")
@@ -678,38 +666,20 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sriuw")
 }],
-"loop": false,
+"loop": true,
 "name": &"roll",
 "speed": 17.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2twgn")
+"texture": SubResource("AtlasTexture_g8qmy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r34sr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c0si7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r34sr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c0si7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r34sr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c0si7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aoior")
+"texture": SubResource("AtlasTexture_eo7ow")
 }],
-"loop": false,
+"loop": true,
 "name": &"slide",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -726,11 +696,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nslh6"]
-size = Vector2(50, 43)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p18bu"]
-size = Vector2(50, 43)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v38vc"]
+size = Vector2(46, 42)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -747,22 +714,18 @@ position = Vector2(0, -10.75)
 shape = SubResource("RectangleShape2D_1n5yu")
 disabled = true
 
-[node name="Specialcol" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6.5)
-shape = SubResource("RectangleShape2D_a7pvr")
-disabled = true
-
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_7sqfr")
-animation = &"slide"
+animation = &"attack1"
 autoplay = "Idle"
-frame = 7
-frame_progress = 1.0
+frame = 1
+frame_progress = 0.432821
+flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -20)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
@@ -774,27 +737,14 @@ target_position = Vector2(0, -34)
 
 [node name="leftwall" type="RayCast2D" parent="."]
 position = Vector2(0, -19)
-target_position = Vector2(-11, 0)
+target_position = Vector2(-15, 0)
 
 [node name="rightwall" type="RayCast2D" parent="."]
 position = Vector2(0, -19)
-target_position = Vector2(10, 0)
+target_position = Vector2(6, 0)
 
-[node name="Attacks" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("17_d1gcn")
-
-[node name="attack1_L" type="CollisionShape2D" parent="Attacks"]
-position = Vector2(-32, -21.5)
-shape = SubResource("RectangleShape2D_nslh6")
-disabled = true
-debug_color = Color(0.679478, 0.489964, 0.333918, 0.42)
-
-[node name="attack1_R" type="CollisionShape2D" parent="Attacks"]
-position = Vector2(32, -21.5)
-shape = SubResource("RectangleShape2D_p18bu")
-disabled = true
-debug_color = Color(0.679478, 0.489964, 0.333918, 0.42)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, -21)
+shape = SubResource("RectangleShape2D_v38vc")
 
 [connection signal="timeout" from="dedtime" to="." method="_on_dedtime_timeout"]

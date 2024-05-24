@@ -1,53 +1,61 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctggbd8dxpfuu"]
+[gd_scene load_steps=12 format=3 uid="uid://ctggbd8dxpfuu"]
 
 [ext_resource type="PackedScene" uid="uid://bje5usf1yaiun" path="res://scenes/player.tscn" id="1_joes2"]
 [ext_resource type="PackedScene" uid="uid://ceenqsnmiijre" path="res://scenes/map.tscn" id="2_wj48i"]
-[ext_resource type="PackedScene" uid="uid://2pqvem1xddh5" path="res://scenes/power_up.tscn" id="3_re5dk"]
+[ext_resource type="PackedScene" uid="uid://2pqvem1xddh5" path="res://scenes/powerups/power_up.tscn" id="3_re5dk"]
 [ext_resource type="PackedScene" uid="uid://db8e35rj2l3nc" path="res://scenes/kill_zone.tscn" id="4_ux6qq"]
 [ext_resource type="PackedScene" uid="uid://csadwgsaxupwh" path="res://scenes/slime.tscn" id="5_orms2"]
 [ext_resource type="PackedScene" uid="uid://bh8hw06sthqbw" path="res://scenes/skeleton.tscn" id="6_t2jpy"]
-[ext_resource type="PackedScene" uid="uid://jjucupkoytn1" path="res://scenes/jump_up.tscn" id="7_xy258"]
+[ext_resource type="PackedScene" uid="uid://jjucupkoytn1" path="res://scenes/powerups/jump_up.tscn" id="7_xy258"]
+[ext_resource type="PackedScene" uid="uid://cjvcklf7cu4w1" path="res://scenes/powerups/attack_up.tscn" id="8_vkmm8"]
+[ext_resource type="PackedScene" uid="uid://bmtdcmovsu358" path="res://scenes/UI.tscn" id="9_5h1ft"]
+[ext_resource type="PackedScene" uid="uid://b8lsrgfrn62n" path="res://scenes/goblin.tscn" id="10_25qes"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_akkp4"]
+distance = -248.0
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_joes2")]
-position = Vector2(4, -1)
 
 [node name="TileMap" parent="." instance=ExtResource("2_wj48i")]
-
-[node name="PowerUp" parent="." instance=ExtResource("3_re5dk")]
-position = Vector2(369, -16)
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Slime" parent="Enemies" instance=ExtResource("5_orms2")]
-position = Vector2(248, 3)
+position = Vector2(1441, -351)
 
-[node name="Slime2" parent="Enemies" instance=ExtResource("5_orms2")]
-position = Vector2(-3, -302)
+[node name="Slime2" parent="Enemies" node_paths=PackedStringArray("drop") instance=ExtResource("5_orms2")]
+position = Vector2(258, 1)
+drop = NodePath("../../PowerUps/PowerUp")
 
 [node name="Slime3" parent="Enemies" instance=ExtResource("5_orms2")]
-position = Vector2(-75, -303)
+position = Vector2(299, 1)
 
-[node name="Slime4" parent="Enemies" instance=ExtResource("5_orms2")]
-position = Vector2(-44, -351)
-
-[node name="Slime5" parent="Enemies" instance=ExtResource("5_orms2")]
-position = Vector2(-82, -351)
-
-[node name="Slime6" parent="Enemies" instance=ExtResource("5_orms2")]
-position = Vector2(-8, -351)
-
-[node name="KillZone" parent="." instance=ExtResource("4_ux6qq")]
-position = Vector2(361, 1251)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-shape = SubResource("WorldBoundaryShape2D_akkp4")
-
-[node name="skeleton" parent="." instance=ExtResource("6_t2jpy")]
+[node name="skeleton" parent="Enemies" instance=ExtResource("6_t2jpy")]
 position = Vector2(764, 870)
 
-[node name="PowerUp2" parent="." instance=ExtResource("7_xy258")]
+[node name="KillZone" parent="Enemies" instance=ExtResource("4_ux6qq")]
+position = Vector2(361, 1251)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/KillZone"]
+shape = SubResource("WorldBoundaryShape2D_akkp4")
+
+[node name="PowerUps" type="Node" parent="."]
+
+[node name="PowerUp" parent="PowerUps" instance=ExtResource("3_re5dk")]
+position = Vector2(369, -16)
+
+[node name="PowerUp2" parent="PowerUps" instance=ExtResource("7_xy258")]
 position = Vector2(850, 989)
+
+[node name="AttackUp" parent="PowerUps" instance=ExtResource("8_vkmm8")]
+position = Vector2(-87, -1035)
+
+[node name="UI" parent="." instance=ExtResource("9_5h1ft")]
+
+[node name="goblin" parent="." instance=ExtResource("10_25qes")]
+position = Vector2(-285, 1143)
+
+[node name="goblin2" parent="." instance=ExtResource("10_25qes")]
+position = Vector2(-109, -142)
