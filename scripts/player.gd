@@ -47,8 +47,6 @@ var doublejump = false:
 @onready var anim = $anim
 @onready var ui = get_tree().current_scene.get_node("UI")
 
-
-
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -137,9 +135,6 @@ func _physics_process(delta):
 	velocity.x=clamp(velocity.x, -MAX_SPEED_X, MAX_SPEED_X)
 	move_and_slide()
 
-
-
-
 func die():
 	Engine.time_scale = 0.5
 	dead = true
@@ -187,6 +182,7 @@ func attackanim():
 			attack_1_l.disabled = true
 			attack_1_r.disabled = true
 
+#Abandonned
 func dash():
 	nocontrol = true
 	anim.play("slide")

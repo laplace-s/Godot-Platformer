@@ -44,7 +44,7 @@ shape = SubResource("WorldBoundaryShape2D_akkp4")
 [node name="PowerUps" type="Node" parent="."]
 
 [node name="PowerUp" parent="PowerUps" instance=ExtResource("3_re5dk")]
-position = Vector2(369, -16)
+position = Vector2(369, -14)
 
 [node name="PowerUp2" parent="PowerUps" instance=ExtResource("7_xy258")]
 position = Vector2(850, 989)
@@ -59,3 +59,9 @@ position = Vector2(-285, 1143)
 
 [node name="goblin2" parent="." instance=ExtResource("10_25qes")]
 position = Vector2(-109, -142)
+
+[node name="Slime" parent="." instance=ExtResource("5_orms2")]
+position = Vector2(526, 114)
+
+[node name="Slime2" parent="." instance=ExtResource("5_orms2")]
+position = Vector2(554, 114)
