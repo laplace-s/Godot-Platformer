@@ -422,7 +422,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h6orx")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_i4ltw")
 }],
 "loop": false,
@@ -755,10 +755,8 @@ disabled = true
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_7sqfr")
-animation = &"slide"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 7
-frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -20)

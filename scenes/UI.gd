@@ -3,14 +3,26 @@ extends CanvasLayer
 @onready var notification_tile = $NotificationTile
 @onready var label = $NotificationTile/Text
 @onready var notif_timer = $notifTimer
+@onready var timer = $time
+@onready var time_value = $timeValue
 
-var showing = false
-var pause = false
-var gameover = false
-const IN_POS = Vector2(-500, 100)
-const OUT_POS = Vector2(-20, 100)
+const TIMEFORMAT = "{hh}{h}:{mm}{m}:{ss}{s}.{d}"
+var time:int = 0:
+	set(value):
+		time = value
+		var h = value/36000
+		var m = value/600%60
+		var s = value/10%60
+		time_value.text = TIMEFORMAT.format({"h":h, "m":m, "s":s, "d":value%10, "hh":"0" if h<10 else "", "ss":"0" if s<10 else "", "mm":"0" if m<10 else ""})
+var showing := false
+var pause := false
+var gameover := false
+const IN_POS := Vector2(-500, 100)
+const OUT_POS := Vector2(-20, 100)
 @onready var pauseUI = $pause
 @onready var text = $pause/container/Text
+func _ready():
+	timer.start()
 
 func _physics_process(delta):
 	if showing :
@@ -41,9 +53,16 @@ func togglePause(gameovert:bool):
 	Engine.time_scale = 0
 	if gameovert :
 		gameover = true
-		text.text = "Game Over\n Yes that's all the game is about."
+		var h = time/36000
+		var m = time/600%60
+		var s = time/10%60
+		text.text = "Game Over\n Yes that's all the game is about.\n\nYour Time:\n"+TIMEFORMAT.format({"h":h, "m":m, "s":s, "d":time%10, "hh":"0" if h<10 else "", "ss":"0" if s<10 else "", "mm":"0" if m<10 else ""})
 	else :
 		text.text = "Paused."
 
 func _on_notif_timer_timeout():
 	showing = false
+
+
+func _on_time_timeout():
+	time= time+1

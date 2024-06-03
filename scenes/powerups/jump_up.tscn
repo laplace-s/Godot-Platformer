@@ -19,11 +19,4 @@ region_rect = Rect2(64, 256, 32, 32)
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_w88bn")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -149.0
-offset_top = -38.0
-offset_right = 165.0
-offset_bottom = -15.0
-text = "You can now jump while sliding on walls!"
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
